@@ -28,8 +28,7 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@PostMapping("clientes")
-	public ResponseEntity<?> inserir (@Valid @RequestBody ClienteInsertCommand command) {
-		
+	public ResponseEntity<?> inserir ( @RequestBody ClienteInsertCommand command) {
 		Cliente cliente = clienteService.incluir(command);
 		
 		return ResponseEntity.ok(cliente);

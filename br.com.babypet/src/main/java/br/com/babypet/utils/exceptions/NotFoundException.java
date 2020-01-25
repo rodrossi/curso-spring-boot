@@ -1,4 +1,4 @@
-package br.com.babypet.utils;
+package br.com.babypet.utils.exceptions;
 
 public class NotFoundException extends RuntimeException {
 	

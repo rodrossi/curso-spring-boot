@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import br.com.babypet.dtos.comannds.ClienteInsertCommand;
 import br.com.babypet.dtos.comannds.ClienteUpDateCommand;
+import br.com.babypet.utils.exceptions.BadRequestException;
 
 @Document(collection = "cliente")
 
@@ -37,6 +38,9 @@ public class Cliente {
 	}
 
 	public Cliente(ClienteInsertCommand command) {
+	
+		command.validate();
+		
 		this.nome = command.getNome();
 		this.cpf = command.getCpf();
 		this.email = command.getEmail();

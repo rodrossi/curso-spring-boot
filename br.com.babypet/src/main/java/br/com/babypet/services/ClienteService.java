@@ -9,7 +9,7 @@ import br.com.babypet.domain.Cliente;
 import br.com.babypet.dtos.comannds.ClienteInsertCommand;
 import br.com.babypet.dtos.comannds.ClienteUpDateCommand;
 import br.com.babypet.repositories.ClienteRepository;
-import br.com.babypet.utils.NotFoundException;
+import br.com.babypet.utils.exceptions.NotFoundException;
 
 @Service
 public class ClienteService {
@@ -18,7 +18,6 @@ public class ClienteService {
 	private ClienteRepository clienteRepository;
 	
 	public Cliente incluir(ClienteInsertCommand command) {
-		
 		Cliente cliente = new Cliente(command);
 		
 		return clienteRepository.save(cliente);
