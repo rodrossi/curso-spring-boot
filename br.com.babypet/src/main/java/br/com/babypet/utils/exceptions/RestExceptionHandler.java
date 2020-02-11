@@ -16,8 +16,15 @@ public class RestExceptionHandler {
 
 	@ExceptionHandler(BadRequestException.class)
 	public ResponseEntity<?> handleBadRequestException(BadRequestException exception) {
-		String message = exception.getMessage();
+		
 		MessageErrorResponse errorResponse = exception.getErrorResponse();
+		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+	}
+	
+	@ExceptionHandler(NoContentException.class)
+	public ResponseEntity<?> handleNoContentException(NoContentException exception){
+		
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

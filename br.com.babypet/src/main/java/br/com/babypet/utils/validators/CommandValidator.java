@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.validation.Constraint;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import br.com.babypet.utils.ApplicationContextProvider;
 import br.com.babypet.utils.exceptions.BadRequestException;
 import br.com.babypet.utils.exceptions.MessageErrorDetail;
 
@@ -23,7 +23,9 @@ public class CommandValidator <T> extends AbstractValidator {
 		
 		interpolator.setDefaultLocale(new Locale("pt", "BR"));
 		
-		Validator validator = Validation.byDefaultProvider().configure().messageInterpolator(interpolator).buildValidatorFactory().getValidator();
+		Validator validator = Validation.byDefaultProvider().configure()
+				.constraintValidatorFactory(ApplicationContextProvider.getValidatorFactory())
+				.messageInterpolator(interpolator).buildValidatorFactory().getValidator();
 		
 		Set<ConstraintViolation<T>> violations =  validator.validate(command);
 		
